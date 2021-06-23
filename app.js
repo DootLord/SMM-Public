@@ -1,6 +1,6 @@
 const { Console } = require('console');
-
-const app = require('express')();
+const express = require("express");
+const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
@@ -10,6 +10,8 @@ let posts = [];
 let users = []; // keep users low, as we're re-rendering the posts every time! D:
 let topic = "";
 
+//Initialization
+app.use(express.static(__dirname + "/static"));
 topic = topicSubjects[Math.floor(Math.random() * topicSubjects.length)];
 
 // Every minute there's a new round.
